@@ -1,0 +1,4 @@
+Task: Create lua/plugins/treesitter.lua and configure lazy.nvim to load it.
+Summary: Created the initial configuration file for nvim-treesitter to be loaded by lazy.nvim.
+Files: lua/plugins/treesitter.lua
+Why: To enable syntax highlighting using Treesitter as specified in the track.
