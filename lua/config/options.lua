@@ -22,3 +22,13 @@ vim.opt.incsearch = true
 -- Window Management
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- System & Files
+vim.opt.undofile = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 8
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.updatetime = 300
+vim.opt.timeoutlen = 300
