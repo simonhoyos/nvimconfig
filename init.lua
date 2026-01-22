@@ -5,5 +5,6 @@ vim.g.maplocalleader = "\\"
 
 require("config.options")
 
-require("lazy").setup()
+require("lazy").setup("plugins")
+
 
