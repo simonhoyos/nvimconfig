@@ -1,3 +1,9 @@
-require('lib.ensure_lazy').run()
+require("lib.ensure_lazy").run()
 
-require('lazy').setup()
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+require("config.options")
+
+require("lazy").setup()
+
