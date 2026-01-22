@@ -1,0 +1,1 @@
+Task: Update init.lua to load options. Created lua/config/options.lua and required it in init.lua.
