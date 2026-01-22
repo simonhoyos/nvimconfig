@@ -1,0 +1,4 @@
+Task: Enable highlight, indent, and incremental_selection modules in the configuration.
+Summary: Enabled the incremental_selection module with default keymaps in the nvim-treesitter configuration.
+Files: lua/plugins/treesitter.lua
+Why: To allow for smart code selection based on the syntax tree as per the requirements.
