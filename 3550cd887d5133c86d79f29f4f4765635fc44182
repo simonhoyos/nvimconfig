@@ -1,0 +1,4 @@
+Task: Implement base nvim-treesitter.configs setup with ensure_installed for all specified languages.
+Summary: Updated the ensure_installed list in the treesitter configuration with all the languages specified in the track.
+Files: lua/plugins/treesitter.lua
+Why: To ensure that the necessary syntax parsers are automatically installed by Treesitter.
