@@ -1,3 +1,8 @@
 return {
-  -- Theme configuration will go here
+  {
+    "dracula/vim",
+    name = "dracula",
+    lazy = false,
+    priority = 1000,
+  },
 }
