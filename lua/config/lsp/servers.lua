@@ -1,11 +1,7 @@
 local M = {}
 
-function M.setup(on_attach, capabilities)
-  local lspconfig = require("lspconfig")
-
-  lspconfig.lua_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+M.opts = {
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = {
@@ -20,7 +16,7 @@ function M.setup(on_attach, capabilities)
         },
       },
     },
-  })
-end
+  },
+}
 
 return M

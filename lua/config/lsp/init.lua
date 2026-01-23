@@ -23,7 +23,9 @@ end
 
 local function setup_servers()
   local keymaps = require("config.lsp.keymaps")
-  local servers = require("config.lsp.servers")
+  local server_opts = require("config.lsp.servers").opts
+  local lspconfig = require("lspconfig")
+  local mason_lspconfig = require("mason-lspconfig")
 
   local on_attach = function(client, bufnr)
     keymaps.on_attach(client, bufnr)
@@ -32,7 +34,14 @@ local function setup_servers()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  servers.setup(on_attach, capabilities)
+  mason_lspconfig.setup_handlers({
+    function(server_name)
+      local opts = server_opts[server_name] or {}
+      opts.on_attach = on_attach
+      opts.capabilities = capabilities
+      lspconfig[server_name].setup(opts)
+    end,
+  })
 end
 
 function M.setup()
