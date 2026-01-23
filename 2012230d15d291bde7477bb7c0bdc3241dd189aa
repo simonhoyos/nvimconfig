@@ -1,0 +1,4 @@
+Task: Enable highlight, indent, and incremental_selection modules in the configuration.
+Summary: Configured nvim-treesitter v1.0+ using the new API. Enabled highlighting and indentation via autocommands with namespaces [SYN]. Note: Incremental selection module is removed in v1.0+.
+Files: lua/plugins/treesitter.lua
+Why: To provide syntax highlighting and indentation support using the latest treesitter version.
