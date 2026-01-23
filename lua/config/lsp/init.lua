@@ -22,8 +22,8 @@ local function setup_format_on_save(client, bufnr)
 end
 
 local function setup_servers()
-  local keymaps = require("plugins.lsp.keymaps")
-  local servers = require("plugins.lsp.servers")
+  local keymaps = require("config.lsp.keymaps")
+  local servers = require("config.lsp.servers")
 
   local on_attach = function(client, bufnr)
     keymaps.on_attach(client, bufnr)

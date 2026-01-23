@@ -7,7 +7,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-      require("plugins.lsp.init").setup()
+      require("config.lsp.init").setup()
     end,
   },
 }
