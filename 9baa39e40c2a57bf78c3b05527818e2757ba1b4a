@@ -1,0 +1,4 @@
+Task: Install telescope.nvim and telescope-fzf-native.nvim with configuration.
+Summary: Created lua/plugins/telescope.lua to configure Telescope with the requested ignore patterns and the fzf-native sorter.
+Files: lua/plugins/telescope.lua
+Why: To provide efficient file navigation as specified in the track.
