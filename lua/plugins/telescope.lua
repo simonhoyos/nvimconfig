@@ -6,6 +6,15 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
     },
+    keys = {
+      {
+        "<C-p>",
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "Find Files",
+      },
+    },
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
@@ -29,6 +38,11 @@ return {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
+          },
+        },
+        pickers = {
+          find_files = {
+            find_command = { "rg", "--hidden", "--unrestricted", "--files", "--sort", "path" },
           },
         },
         extensions = {
