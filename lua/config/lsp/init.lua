@@ -34,14 +34,11 @@ local function setup_servers()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  mason_lspconfig.setup_handlers({
-    function(server_name)
-      local opts = server_opts[server_name] or {}
-      opts.on_attach = on_attach
-      opts.capabilities = capabilities
-      lspconfig[server_name].setup(opts)
-    end,
-  })
+  -- Manual setup for lua_ls to avoid mason-lspconfig setup_handlers issue
+  local opts = server_opts["lua_ls"] or {}
+  opts.on_attach = on_attach
+  opts.capabilities = capabilities
+  lspconfig.lua_ls.setup(opts)
 end
 
 function M.setup()
