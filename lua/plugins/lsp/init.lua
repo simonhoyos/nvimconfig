@@ -35,7 +35,9 @@ local function setup_servers()
   servers.setup(on_attach, capabilities)
 end
 
-setup_mason()
-setup_servers()
+function M.setup()
+  setup_mason()
+  setup_servers()
+end
 
 return M
