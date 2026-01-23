@@ -1,46 +1,48 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      local configs = require("nvim-treesitter.configs")
+      require("nvim-treesitter").install({
+        "typescript",
+        "javascript",
+        "tsx",
+        "ruby",
+        "html",
+        "haml",
+        "css",
+        "scss",
+        "svelte",
+        "lua",
+        "json",
+        "yaml",
+        "toml",
+        "markdown",
+        "markdown_inline",
+        "bash",
+        "sql",
+        "vim",
+        "vimdoc",
+        "query",
+      })
 
-      configs.setup({
-        ensure_installed = {
-          "typescript",
-          "javascript",
-          "tsx",
-          "ruby",
-          "html",
-          "haml",
-          "css",
-          "scss",
-          "svelte",
-          "lua",
-          "json",
-          "yaml",
-          "toml",
-          "markdown",
-          "markdown_inline",
-          "bash",
-          "sql",
-          "vim",
-          "vimdoc",
-          "query",
-        },
-        sync_install = false,
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<c-space>",
-            node_incremental = "<c-space>",
-            scope_incremental = "<c-s>",
-            node_decremental = "<M-space>",
-          },
-        },
+      local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        desc = "[SYN] Enable treesitter highlighting",
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        desc = "[SYN] Enable treesitter indentation",
+        callback = function()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end,
   },
