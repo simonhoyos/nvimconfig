@@ -1,45 +1,46 @@
+local neogit = package.loaded.neogit
+local gitsigns = package.loaded.gitsigns
+
 local opts = { silent = true, noremap = true, }
 
--- Neogit keybindings
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<CR>",
-  vim.tbl_extend("force", opts, { desc = "[GIT] Neogit status", }))
-vim.keymap.set("n", "<leader>gc", "<cmd>Neogit commit<CR>",
-  vim.tbl_extend("force", opts, { desc = "[GIT] Neogit commit", }))
-vim.keymap.set("n", "<leader>gl", "<cmd>Neogit log<CR>",
-  vim.tbl_extend("force", opts, { desc = "[GIT] Neogit log", }))
-vim.keymap.set("n", "<leader>gp", "<cmd>Neogit push<CR>",
-  vim.tbl_extend("force", opts, { desc = "[GIT] Neogit push", }))
+if neogit then
+  vim.keymap.set("n", "<leader>gg", neogit.open,
+    vim.tbl_extend("force", opts, { desc = "[GIT] Neogit status", }))
+  vim.keymap.set("n", "<leader>gc", function() neogit.open({ "commit", }) end,
+    vim.tbl_extend("force", opts, { desc = "[GIT] Neogit commit", }))
+  vim.keymap.set("n", "<leader>gl", function() neogit.open({ "log", }) end,
+    vim.tbl_extend("force", opts, { desc = "[GIT] Neogit log", }))
+  vim.keymap.set("n", "<leader>gp", "<cmd>Neogit push<CR>",
+    vim.tbl_extend("force", opts, { desc = "[GIT] Neogit push", }))
+end
 
--- Gitsigns keybindings
--- These depend on gitsigns being loaded, but since we use after/plugin 
--- and it's a plugin that adds commands, we can use the plugin-specific functions
--- if we want to be safe or just use commands.
-local gs = package.loaded.gitsigns
+if gitsigns then
+  vim.keymap.set("n", "<leader>gh", package.loaded.gitsigns.preview_hunk,
+    vim.tbl_extend("force", opts, { desc = "[GIT] Preview hunk", buffer = true, }))
+  vim.keymap.set("n", "<leader>gb",
+    package.loaded.gitsigns.toggle_current_line_blame,
+    vim.tbl_extend("force", opts,
+      { desc = "[GIT] Toggle line blame", buffer = true, }))
 
-vim.keymap.set("n", "<leader>gh", function()
-  if package.loaded.gitsigns then
-    package.loaded.gitsigns.preview_hunk()
-  end
-end, vim.tbl_extend("force", opts, { desc = "[GIT] Preview hunk", }))
+  vim.keymap.set("n", "<leader>gj", function()
+    if vim.wo.diff then
+      return
+        vim.cmd.normal({ "]c", bang = true, })
+    end
 
-vim.keymap.set("n", "<leader>gb", function()
-  if package.loaded.gitsigns then
-    package.loaded.gitsigns.toggle_current_line_blame()
-  end
-end, vim.tbl_extend("force", opts, { desc = "[GIT] Toggle line blame", }))
+    vim.schedule(gitsigns.next_hunk)
 
-vim.keymap.set("n", "<leader>gj", function()
-  if package.loaded.gitsigns then
-    if vim.wo.diff then return "]c" end
-    vim.schedule(function() package.loaded.gitsigns.next_hunk() end)
     return "<Ignore>"
-  end
-end, { expr = true, desc = "[GIT] Next hunk", })
+  end, { expr = true, desc = "[GIT] Next hunk", buffer = true, })
 
-vim.keymap.set("n", "<leader>gk", function()
-  if package.loaded.gitsigns then
-    if vim.wo.diff then return "[c" end
-    vim.schedule(function() package.loaded.gitsigns.prev_hunk() end)
+  vim.keymap.set("n", "<leader>gk", function()
+    if vim.wo.diff then
+      return
+        vim.cmd.normal({ "[c", bang = true, })
+    end
+
+    vim.schedule(gitsigns.prev_hunk)
+
     return "<Ignore>"
-  end
-end, { expr = true, desc = "[GIT] Previous hunk", })
+  end, { expr = true, desc = "[GIT] Previous hunk", buffer = true, })
+end
