@@ -6,7 +6,13 @@ return {
       "sindrets/diffview.nvim",
       "nvim-telescope/telescope.nvim",
     },
-    config = true,
+    opts = {
+      disable_commit_confirmation = true,
+      integrations = {
+        diffview = true,
+        telescope = true,
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
