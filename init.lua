@@ -7,6 +7,6 @@ require("config.options")
 require("config.keymaps")
 
 require("lazy").setup({
-  { import = "plugins", },
+  spec = { import = "plugins", },
+  install = { colorscheme = { "dracula", }, },
 })
-

@@ -100,6 +100,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       filter = function(client)
         local filetype = vim.bo.filetype
         local formatter = ({
+          -- rust_analyzer = { 'rust' },
+          prismals = { "prisma", },
+          ruff = { "python", },
+          efm = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+
+            "json",
+            "markdown",
+
+            "lua",
+          },
+          ruby = {
+            "rubocop",
+          },
           lua_ls = {
             -- TODO: add to the documentation to add stylua using mason
             "lua",

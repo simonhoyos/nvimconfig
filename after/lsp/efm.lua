@@ -1,7 +1,28 @@
+local prettier = require("efmls-configs.formatters.prettier")
+local stylua = require("efmls-configs.formatters.stylua")
+vim.notify(vim.inspect(stylua))
+-- local eslint = require('efmls-configs.linters.eslint')
+
 local languages = {
-  lua = {
-    stylua = require("efmls-configs.formatters.stylua"),
-  },
+  -- javascript = { prettier, eslint },
+  -- javascriptreact = { prettier, eslint },
+  -- typescript = { prettier, eslint },
+  -- typescriptreact = { prettier, eslint },
+
+  javascript = { prettier, },
+  javascriptreact = { prettier, },
+  typescript = { prettier, },
+  typescriptreact = { prettier, },
+
+  css = { prettier, },
+  scss = { prettier, },
+  html = { prettier, },
+  json = { prettier, },
+  yaml = { prettier, },
+  yml = { prettier, },
+  markdown = { prettier, },
+
+  lua = { stylua, },
 }
 
 return {
