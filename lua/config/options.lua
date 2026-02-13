@@ -1,5 +1,11 @@
 -- Core Editor Options
 
+-- disable builtins
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_tutor_mode_plugin = 1
+vim.opt.mouse = ""
+
 -- UI & Visuals
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -32,3 +38,17 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 300
+
+vim.cmd.syntax("on")
+vim.cmd.highlight("CursorColumn ctermbg=3")
+vim.cmd.highlight("UnwantedTrailerTrash guibg=#d75f5f guifg=IndianRed")
+vim.cmd([[hi! link netrwMarkFile Search]])
+
+-- match colors with terminal
+if vim.fn.has("termguicolors") then
+  vim.opt.termguicolors = true
+end
+
+if not vim.fn.has("gui_running") then
+  vim.opt.t_Co = 256
+end

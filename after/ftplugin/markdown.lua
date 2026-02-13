@@ -9,8 +9,8 @@ end)
 
 local textwidth = 100
 
-keymap.set_buf("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, })
-keymap.set_buf("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, buffer = true, })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, buffer = true, })
 
 -- vim.opt_local.formatoptions = '1'
 -- vim.opt_local.formatoptions = 't'

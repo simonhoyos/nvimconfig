@@ -1,10 +1,7 @@
 local navigation = require("lib.navigation")
+local path = require("lib.path")
 
 local opts = { silent = true, noremap = true, }
-
-vim.cmd.syntax("on")
-vim.cmd.highlight("CursorColumn ctermbg=3")
-vim.cmd([[hi! link netrwMarkFile Search]])
 
 -- Remap
 vim.keymap.set("v", "<leader>p", '"_dP')
@@ -37,3 +34,10 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<leader>nn", navigation.toggle_netrw, opts)
 vim.keymap.set("n", "<leader>nc", navigation.toggle_netrw_current_file, opts)
 vim.keymap.set("n", "<leader>cd", "<cmd>cd %:p:h<CR>", opts)
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "<leader>pp", path.copy_relative_path)
+vim.keymap.set("n", "<leader>pa", path.copy_absolute_path)
+vim.keymap.set("n", "<leader>pg", path.copy_remote_link)

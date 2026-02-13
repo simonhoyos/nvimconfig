@@ -1,4 +1,4 @@
-local string_utils = require("lib.utils.strings")
+local string_utils = require("lib.strings")
 
 local M = {}
 
@@ -35,8 +35,8 @@ function M.get_backup_dir()
   return backup_directory
 end
 
-function M.split_string(str, delimeter, index)
-  local pattern = "([^" .. delimeter .. "]+)"
+function M.split_string(str, delimiter, index)
+  local pattern = "([^" .. delimiter .. "]+)"
   local result = {}
 
   for word in string.gmatch(str, pattern) do

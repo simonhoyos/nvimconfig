@@ -31,8 +31,7 @@ function M.copy_remote_link()
     local root_dir = system.run_shell_command("git rev-parse --show-toplevel",
       false)
     local file_dir = vim.fn.expand("%:p")
-    local files = system.run_shell_command(
-    "git ls-files --full-name root_dir " .. root_dir, true)
+    local files = system.run_shell_command("git ls-files --full-name", true)
     local file_name = ""
 
     for file in files do
