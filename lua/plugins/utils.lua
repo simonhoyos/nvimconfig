@@ -17,4 +17,17 @@ return {
       },
     },
   },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    enabled = false,
+  },
+  {
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
+    init = function()
+      vim.g.startuptime_tries = 10
+    end,
+    enabled = false,
+  },
 }
