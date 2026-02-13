@@ -7,27 +7,37 @@ return {
       require("nvim-treesitter").install({
         "typescript",
         "javascript",
-        "tsx",
         "ruby",
+        "rust",
+        "python",
+        "bash",
+        "lua",
+
+        "graphql",
+
+        "tsx",
+        "svelte",
         "html",
         "haml",
         "css",
         "scss",
-        "svelte",
-        "lua",
+
+        "markdown",
+        "markdown_inline",
+        "vim",
+        "vimdoc",
+
+        "sql",
+        "query",
+
         "json",
         "yaml",
         "toml",
-        "markdown",
-        "markdown_inline",
-        "bash",
-        "sql",
-        "vim",
-        "vimdoc",
-        "query",
+        "just",
       })
 
-      local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+      local group = vim.api.nvim_create_augroup("TreesitterSetup",
+        { clear = true, })
 
       vim.api.nvim_create_autocmd("FileType", {
         group = group,
@@ -48,7 +58,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", },
     opts = {
       max_lines = 5,
       separator = nil,
