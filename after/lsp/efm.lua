@@ -1,6 +1,5 @@
 local prettier = require("efmls-configs.formatters.prettier")
 local stylua = require("efmls-configs.formatters.stylua")
-vim.notify(vim.inspect(stylua))
 -- local eslint = require('efmls-configs.linters.eslint')
 
 local languages = {

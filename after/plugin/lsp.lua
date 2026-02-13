@@ -111,14 +111,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
             "json",
             "markdown",
-
-            "lua",
           },
           ruby = {
             "rubocop",
           },
           lua_ls = {
-            -- TODO: add to the documentation to add stylua using mason
             "lua",
           },
         })[client.name]

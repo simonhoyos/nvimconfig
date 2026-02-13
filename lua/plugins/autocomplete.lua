@@ -136,7 +136,6 @@ return {
     end,
     config = function(_, opts)
       local cmp = require("cmp")
-      local keymap = require("lib.keymap")
       local cmp_lsp = require("cmp_nvim_lsp")
 
       vim.lsp.config("*", {
@@ -155,13 +154,16 @@ return {
         }),
       })
 
-      require("snippets.lua")
-      -- require('snippets.javascript')
-      -- require('snippets.typescript')
+      -- require("snippets.lua")
+      -- -- require('snippets.javascript')
+      -- -- require('snippets.typescript')
 
-      keymap.set("i", "<C-j>", "<Plug>luasnip-jump-next", { noremap = false, })
-      keymap.set("i", "<C-k>", "<Plug>luasnip-jump-prev", { noremap = false, })
-      keymap.set("i", "<C-e>", "<Plug>luasnip-next-choice", { noremap = false, })
+      -- vim.keymap.set("i", "<C-j>", "<Plug>luasnip-jump-next",
+      --   { noremap = false, })
+      -- vim.keymap.set("i", "<C-k>", "<Plug>luasnip-jump-prev",
+      --   { noremap = false, })
+      -- vim.keymap.set("i", "<C-e>", "<Plug>luasnip-next-choice",
+      --   { noremap = false, })
     end,
   },
 }
