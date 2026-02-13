@@ -30,4 +30,13 @@ return {
     end,
     enabled = false,
   },
+  {
+    "kevinhwang91/nvim-bqf",
+    opts = {
+      func_map = {
+        pscrollup = "<C-u>",
+        pscrolldown = "<C-d>",
+      },
+    },
+  },
 }
