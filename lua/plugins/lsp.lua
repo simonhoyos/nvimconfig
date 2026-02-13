@@ -18,6 +18,8 @@ return {
             "html",
             "jsonls",
 
+            "svelte",
+
             "ruby_lsp",
             "rubocop",
 

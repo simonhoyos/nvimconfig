@@ -16,11 +16,11 @@ end
 
 if gitsigns then
   vim.keymap.set("n", "<leader>gh", package.loaded.gitsigns.preview_hunk,
-    vim.tbl_extend("force", opts, { desc = "[GIT] Preview hunk", buffer = true, }))
+    vim.tbl_extend("force", opts, { desc = "[GIT] Preview hunk", }))
   vim.keymap.set("n", "<leader>gb",
     package.loaded.gitsigns.toggle_current_line_blame,
     vim.tbl_extend("force", opts,
-      { desc = "[GIT] Toggle line blame", buffer = true, }))
+      { desc = "[GIT] Toggle line blame", }))
 
   vim.keymap.set("n", "<leader>gj", function()
     if vim.wo.diff then
@@ -31,7 +31,7 @@ if gitsigns then
     vim.schedule(gitsigns.next_hunk)
 
     return "<Ignore>"
-  end, { expr = true, desc = "[GIT] Next hunk", buffer = true, })
+  end, { expr = true, desc = "[GIT] Next hunk", })
 
   vim.keymap.set("n", "<leader>gk", function()
     if vim.wo.diff then
@@ -42,5 +42,5 @@ if gitsigns then
     vim.schedule(gitsigns.prev_hunk)
 
     return "<Ignore>"
-  end, { expr = true, desc = "[GIT] Previous hunk", buffer = true, })
+  end, { expr = true, desc = "[GIT] Previous hunk", })
 end

@@ -112,6 +112,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
             "json",
             "markdown",
           },
+          svelte = {
+            "svelte",
+          },
           ruby = {
             "rubocop",
           },

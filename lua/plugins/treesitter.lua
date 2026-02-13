@@ -18,7 +18,6 @@ return {
         "tsx",
         "svelte",
         "html",
-        "haml",
         "css",
         "scss",
 

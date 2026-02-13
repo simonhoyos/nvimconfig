@@ -11,7 +11,6 @@ vim.opt.mouse = ""
 vim.opt.number = true
 vim.opt.numberwidth = 1
 vim.opt.relativenumber = true
-vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.shortmess:append({ c = true, })
 vim.opt.colorcolumn = "+1"
