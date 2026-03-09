@@ -24,19 +24,6 @@ return {
 
       telescope.setup({
         defaults = {
-          file_ignore_patterns = {
-            "node_modules",
-            "target",
-            "dist",
-            "%.git/",
-            "%.next/",
-            "%.data/",
-            "%.data%-crdb/",
-            "%.vercel/",
-            "%.venv/",
-            "coverage",
-            "conductor",
-          },
           mappings = {
             n = {
               ["<C-h>"] = actions.which_key,
@@ -62,6 +49,19 @@ return {
         pickers = {
           find_files = {
             find_command = { "rg", "--hidden", "--unrestricted", "--files", "--sort", "path", },
+            file_ignore_patterns = {
+              "node_modules",
+              "target",
+              "dist",
+              "%.git/",
+              "%.next/",
+              "%.data/",
+              "%.data%-crdb/",
+              "%.vercel/",
+              "%.venv/",
+              "coverage",
+              "conductor",
+            },
           },
         },
         extensions = {

@@ -41,3 +41,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<leader>pp", path.copy_relative_path)
 vim.keymap.set("n", "<leader>pa", path.copy_absolute_path)
 vim.keymap.set("n", "<leader>pg", path.copy_remote_link)
+
+-- Sessions
+vim.keymap.set("n", "<leader>ss", "<cmd>mksession! mysession.vim<cr>", { desc = "Save session" })
+vim.keymap.set("n", "<leader>sl", "<cmd>source mysession.vim<cr>", { desc = "Load session" })
