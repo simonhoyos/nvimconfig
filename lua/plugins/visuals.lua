@@ -50,4 +50,16 @@ return {
       { "<leader>m", "<cmd>MaximizerToggle<CR>", mode = "v",               desc = "Maximize Window", },
     },
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    keys = {
+      { "<leader>mm", "<cmd>RenderMarkdown toggle<CR>", desc = "Toggle Markdown render", },
+    },
+    opts = {},
+  },
 }
