@@ -54,6 +54,12 @@ return {
               ["<M-q>"] = { "qflist", mode = { "i", "n", }, },
             },
           },
+          list = {
+            keys = {
+              ["<M-i>"] = { "grep_add_glob", mode = { "n", }, },
+              ["<M-q>"] = { "qflist", mode = { "n", }, },
+            },
+          },
         },
         -- start in normal mode (mirrors telescope initial_mode = "normal")
         prompt = "",
