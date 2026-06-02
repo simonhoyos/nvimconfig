@@ -4,13 +4,13 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
+      "folke/snacks.nvim",
     },
     opts = {
       disable_commit_confirmation = true,
       integrations = {
         diffview = true,
-        telescope = true,
+        snacks = true,
       },
     },
   },
