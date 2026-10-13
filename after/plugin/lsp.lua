@@ -102,7 +102,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
             "typescript",
             "typescriptreact",
 
+            "css",
+            "scss",
+            "html",
             "json",
+            "yaml",
+            "yml",
             "markdown",
           },
           svelte = {

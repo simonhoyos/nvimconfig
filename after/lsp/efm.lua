@@ -1,13 +1,16 @@
-local prettier = require("efmls-configs.formatters.prettier")
 local stylua = require("efmls-configs.formatters.stylua")
--- local eslint = require('efmls-configs.linters.eslint')
+
+-- Custom prettier formatter that uses a relative path so efm-langserver
+-- resolves it from its root directory (set via rootMarkers below).
+-- This avoids efmls-configs' fs.executable() which only checks the
+-- neovim cwd, breaking in monorepos where prettier is per-package.
+local prettier = {
+  formatCanRange = true,
+  formatCommand = "node_modules/.bin/prettier --stdin --stdin-filepath '${INPUT}' ${--range-start:charStart} ${--range-end:charEnd} --config-precedence prefer-file",
+  formatStdin = true,
+}
 
 local languages = {
-  -- javascript = { prettier, eslint },
-  -- javascriptreact = { prettier, eslint },
-  -- typescript = { prettier, eslint },
-  -- typescriptreact = { prettier, eslint },
-
   javascript = { prettier, },
   javascriptreact = { prettier, },
   typescript = { prettier, },
@@ -34,7 +37,21 @@ return {
     completion = true,
   },
   settings = {
-    rootMarkers = { ".git/", },
+    rootMarkers = {
+      ".git/",
+      ".prettierrc",
+      ".prettierrc.json",
+      ".prettierrc.js",
+      ".prettierrc.yaml",
+      ".prettierrc.yml",
+      ".prettierrc.toml",
+      ".prettierrc.json5",
+      ".prettierrc.mjs",
+      ".prettierrc.cjs",
+      "prettier.config.js",
+      "prettier.config.cjs",
+      "prettier.config.mjs",
+    },
     languages = languages,
   },
   filetypes = vim.tbl_keys(languages),
