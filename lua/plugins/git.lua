@@ -6,13 +6,28 @@ return {
       "sindrets/diffview.nvim",
       "folke/snacks.nvim",
     },
-    opts = {
-      disable_commit_confirmation = true,
-      integrations = {
-        diffview = true,
-        snacks = true,
-      },
-    },
+    opts = function()
+      local palette = require("lib.palette")
+
+      return {
+        disable_commit_confirmation = true,
+        integrations = {
+          diffview = true,
+          snacks = true,
+        },
+        -- Neogit builds its palette from semantic groups by default, which
+        -- Dracula does not map to matching colors. Give it the real ones.
+        highlight = {
+          red = palette.red,
+          orange = palette.orange,
+          yellow = palette.yellow,
+          green = palette.green,
+          cyan = palette.cyan,
+          blue = palette.purple,
+          purple = palette.pink,
+        },
+      }
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

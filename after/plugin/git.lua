@@ -1,37 +1,57 @@
 local neogit = package.loaded.neogit
 local gitsigns = package.loaded.gitsigns
 
-do
-  local function get_hex(group, attr)
-    local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
-    return hl and hl[attr] and string.format("#%06x", hl[attr])
-  end
+local palette = require("lib.palette")
 
-  local function blend(color, bg, alpha)
-    local function ch(c, b)
-      return string.format("%02x", math.floor(c * alpha + b * (1 - alpha)))
-    end
-    return "#"
-      .. ch(tonumber(color:sub(2, 3), 16), tonumber(bg:sub(2, 3), 16))
-      .. ch(tonumber(color:sub(4, 5), 16), tonumber(bg:sub(4, 5), 16))
-      .. ch(tonumber(color:sub(6, 7), 16), tonumber(bg:sub(6, 7), 16))
-  end
+local function neogit_diff_highlights()
+  local blend = palette.blend
+  local normal_bg = palette.bg
+  local normal_fg = palette.fg
+  local red = palette.red
+  local green = palette.green
+  local blue = palette.cyan
+  local purple = palette.purple
+  local grey = palette.comment
 
-  local normal_bg = get_hex("Normal", "bg") or "#000000"
-  local red = get_hex("Error", "fg") or "#ff5555"
-  local green = get_hex("Type", "fg") or "#50fa7b"
-
-  local dim_bg_green = blend(green, normal_bg, 0.15)
-  local dim_bg_red = blend(red, normal_bg, 0.15)
+  local bg_green = blend(green, normal_bg, 0.15)
+  local bg_red = blend(red, normal_bg, 0.15)
+  local bg_green_hl = blend(green, normal_bg, 0.25)
+  local bg_red_hl = blend(red, normal_bg, 0.25)
+  local bg_context = blend(normal_fg, normal_bg, 0.06)
 
   local hl = vim.api.nvim_set_hl
-  hl(0, "NeogitDiffAdd",              { bg = dim_bg_green, fg = green })
-  hl(0, "NeogitDiffDelete",           { bg = dim_bg_red, fg = red })
-  hl(0, "NeogitDiffAddHighlight",     { bg = dim_bg_green, fg = green })
-  hl(0, "NeogitDiffDeleteHighlight",  { bg = dim_bg_red, fg = red })
-  hl(0, "NeogitDiffAddInline",        { bg = green, fg = normal_bg })
-  hl(0, "NeogitDiffDeleteInline",     { bg = red, fg = normal_bg })
+  -- Context lines: keep the editor background so added/removed lines pop.
+  hl(0, "NeogitDiffContext",          { bg = "NONE", fg = normal_fg })
+  hl(0, "NeogitDiffContextHighlight", { bg = bg_context, fg = normal_fg })
+  hl(0, "NeogitDiffContextCursor",    { bg = bg_context, fg = normal_fg })
+
+  hl(0, "NeogitDiffAdd",              { bg = bg_green, fg = green })
+  hl(0, "NeogitDiffAddHighlight",     { bg = bg_green_hl, fg = green })
+  hl(0, "NeogitDiffAddCursor",        { bg = bg_green_hl, fg = green })
+  hl(0, "NeogitDiffAdditions",        { fg = green })
+  hl(0, "NeogitDiffAddInline",        { bg = blend(green, normal_bg, 0.45), fg = normal_fg, bold = true })
+
+  hl(0, "NeogitDiffDelete",           { bg = bg_red, fg = red })
+  hl(0, "NeogitDiffDeleteHighlight",  { bg = bg_red_hl, fg = red })
+  hl(0, "NeogitDiffDeleteCursor",     { bg = bg_red_hl, fg = red })
+  hl(0, "NeogitDiffDeletions",        { fg = red })
+  hl(0, "NeogitDiffDeleteInline",     { bg = blend(red, normal_bg, 0.45), fg = normal_fg, bold = true })
+
+  hl(0, "NeogitHunkHeader",           { bg = blend(grey, normal_bg, 0.25), fg = normal_fg, bold = true })
+  hl(0, "NeogitHunkHeaderHighlight",  { bg = purple, fg = normal_bg, bold = true })
+  hl(0, "NeogitHunkHeaderCursor",     { bg = purple, fg = normal_bg, bold = true })
+
+  hl(0, "NeogitDiffHeader",           { bg = blend(grey, normal_bg, 0.15), fg = blue, bold = true })
+  hl(0, "NeogitDiffHeaderHighlight",  { bg = blend(grey, normal_bg, 0.25), fg = blue, bold = true })
 end
+
+neogit_diff_highlights()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("NeogitDiffHighlights", { clear = true, }),
+  desc = "[GIT] Re-apply Neogit diff highlights",
+  callback = neogit_diff_highlights,
+})
 
 local opts = { silent = true, noremap = true, }
 
